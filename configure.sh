@@ -11,6 +11,7 @@ INSTALL_DEST=$(pwd)/lizmap
 mkdir -p $INSTALL_DEST
 fi
 
+echo realpath
 scriptdir=$(realpath `dirname $0`)
 
 LIZMAP_UID=${LIZMAP_UID:-$(id -u)}
@@ -65,7 +66,7 @@ _makepgservice() {
     cat > $INSTALL_DEST/etc/pg_service.conf <<-EOF
 [lizmap_local]
 host=$POSTGIS_ALIAS
-port=5432
+port=5433
 dbname=$POSTGRES_LIZMAP_DB
 user=$POSTGRES_LIZMAP_USER
 password=$POSTGRES_LIZMAP_PASSWORD
@@ -78,7 +79,7 @@ _makelizmapprofiles() {
 [jdb:jauth]
 driver=pgsql
 host=$POSTGIS_ALIAS
-port=5432
+port=5433
 database=$POSTGRES_LIZMAP_DB
 user=$POSTGRES_LIZMAP_USER
 password="$POSTGRES_LIZMAP_PASSWORD"
